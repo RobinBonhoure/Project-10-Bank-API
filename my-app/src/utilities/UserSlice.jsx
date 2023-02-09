@@ -5,11 +5,6 @@ function initToken() {
   return token
 }
 
-function initDate() {
-  const date = localStorage.getItem("date")
-  return date ? parseInt(date) : 0
-}
-
 function initUserName() {
   const userName = localStorage.getItem("username")
   return userName ? userName : ""
@@ -31,43 +26,26 @@ const initialState = {
     email: "",
     firstName: "",
     id: "",
-    lastName: "",
-    updatedAt: "",
+    lastName: ""
   },
-  profileLoaded: false,
-  date: initDate(),
+  profileLoaded: false
 }
-
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched. Thunks are
-// typically used to make async requests.
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     login: (state, action) => {
       state.isLogged = true
       state.logFailed = false
       localStorage.setItem("token", action.payload.token)
       state.token = action.payload.token
-      state.date = Date.now()
-      localStorage.setItem("date", state.date)
     },
     apierror: (state) => {
       state.logFailed = true
     },
-    relog: (state) => {
-      state.isLogged = true
-      state.date = Date.now()
-      localStorage.setItem("date", state.date)
-    },
     logout: (state) => {
       if (!state.rememberMe) state.email = ""
-      state.date = 0
       state.token = ""
       state.isLogged = false
       state.profile = {
@@ -75,12 +53,10 @@ export const userSlice = createSlice({
         email: "",
         firstName: "",
         id: "",
-        lastName: "",
-        updatedAt: "",
+        lastName: ""
       }
       state.profileLoaded = false
       localStorage.removeItem("token")
-      localStorage.removeItem("date")
     },
     profile: (state, action) => {
       if (action.payload) {
@@ -106,20 +82,16 @@ export const {
   logout,
   profile,
   saveProfile,
-  relog,
   apierror,
   saveRememberMe,
 } = userSlice.actions
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
+// Selectors
 export const selectIsLogged = (state) => state.user.isLogged
 export const selectProfileLoaded = (state) => state.user.profileLoaded
 export const selectProfile = (state) => state.user.profile
 export const selectToken = (state) => state.user.token
 export const selectHello = (state) => state.user.hello
-export const selectDate = (state) => state.user.date
 export const selectUserName = (state) => state.user.email
 export const selectRememberMe = (state) => state.user.rememberMe
 export const selectLogFailed = (state) => state.user.logFailed

@@ -1,15 +1,12 @@
 import logo from '../img/argentBankLogo.png'
 import { Link } from "react-router-dom"
-import { Navigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import {
     selectProfileLoaded,
     selectToken,
     selectIsLogged,
     logout,
-    selectProfile,
-    relog,
-    selectDate,
+    selectProfile
 } from "../utilities/UserSlice"
 import { APIProfile } from "../utilities/ServerRequests"
 import { useEffect } from "react"
@@ -19,7 +16,6 @@ export default function Header() {
     const reduxProfil = useSelector(selectProfile)
     const token = useSelector(selectToken)
     const isLogged = useSelector(selectIsLogged)
-    const date = useSelector(selectDate)
     const dispatch = useDispatch()
 
     function logoutHandler(e) {
@@ -27,22 +23,9 @@ export default function Header() {
         dispatch(logout())
     }
     useEffect(() => {
-        if (token && !isLogged) {
-            const now = Date.now()
-            // 24H
-            // if (now - date > 86400000) {
-            // 1 mn = 60000
-            if (now - date > 60000) {
-                console.log("Now:" + now + " store:" + date + " diff:" + (now - date))
-                dispatch(logout())
-                return
-            }
-            dispatch(relog())
-        }
-
         if (!isLogged || profileLoaded) return
         dispatch(APIProfile())
-    }, [isLogged, profileLoaded, token, dispatch, date])
+    }, [isLogged, profileLoaded, token, dispatch])
 
     return (
         <nav className="main-nav">

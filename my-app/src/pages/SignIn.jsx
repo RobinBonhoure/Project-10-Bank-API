@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { Navigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { selectIsLogged } from "../utilities/UserSlice"
 import { APILogin } from "../utilities/ServerRequests"
 import {
+  selectIsLogged,
   selectUserName,
   saveRememberMe,
   selectRememberMe,
