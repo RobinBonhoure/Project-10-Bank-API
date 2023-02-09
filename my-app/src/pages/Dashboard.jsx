@@ -1,9 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import {
-  selectIsLogged,
-  selectProfile,
-  saveProfile,
-} from "../utilities/UserSlice"
+import { selectIsLogged, selectProfile, saveProfile } from "../utilities/UserSlice"
 import { APIUpdateProfile } from "../utilities/ServerRequests"
 import { useEffect, useState } from "react"
 import User from "../components/User"

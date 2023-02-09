@@ -22,7 +22,6 @@ const initialState = {
   isLogged: false,
   logFailed: false,
   profile: {
-    createdAt: "",
     email: "",
     firstName: "",
     id: "",
@@ -49,7 +48,6 @@ export const userSlice = createSlice({
       state.token = ""
       state.isLogged = false
       state.profile = {
-        createdAt: "",
         email: "",
         firstName: "",
         id: "",
@@ -77,14 +75,8 @@ export const userSlice = createSlice({
   },
 })
 
-export const {
-  login,
-  logout,
-  profile,
-  saveProfile,
-  apierror,
-  saveRememberMe,
-} = userSlice.actions
+// Actions
+export const { login, logout, profile, saveProfile, apierror, saveRememberMe } = userSlice.actions
 
 // Selectors
 export const selectIsLogged = (state) => state.user.isLogged

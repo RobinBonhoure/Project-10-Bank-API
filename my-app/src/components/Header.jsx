@@ -1,13 +1,7 @@
 import logo from '../img/argentBankLogo.png'
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import {
-    selectProfileLoaded,
-    selectToken,
-    selectIsLogged,
-    logout,
-    selectProfile
-} from "../utilities/UserSlice"
+import { selectProfileLoaded, selectToken, selectIsLogged, logout, selectProfile } from "../utilities/UserSlice"
 import { APIProfile } from "../utilities/ServerRequests"
 import { useEffect } from "react"
 

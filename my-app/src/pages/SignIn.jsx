@@ -2,13 +2,8 @@ import { useState } from "react"
 import { Navigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { APILogin } from "../utilities/ServerRequests"
-import {
-  selectIsLogged,
-  selectUserName,
-  saveRememberMe,
-  selectRememberMe,
-  selectLogFailed,
-} from "../utilities/UserSlice"
+import { selectIsLogged, selectUserName, saveRememberMe, selectRememberMe, selectLogFailed } from "../utilities/UserSlice"
+
 function SignIn() {
   const userName = useSelector(selectUserName)
   const [credentials, setCredentials] = useState({

@@ -3,13 +3,9 @@ import { login, profile, apierror } from "./UserSlice"
 import axios from "axios"
 
 axios.defaults.baseURL = "http://localhost:3001/api/v1/user"
-// Le state initial de la feature API req
 const initialState = {
-  // le statut permet de suivre l'état de la requête
   status: "void",
-  // les données lorsque la requête a fonctionné
   data: null,
-  // l'erreur lorsque la requête échoue
   error: null,
 }
 
@@ -118,7 +114,10 @@ const { actions, reducer } = createSlice({
   },
 })
 
-export const selectStatus = (state) => state.serverAPI.status
+// Actions
 export const { fetching, rejected, resolved } = actions
+
+// Selectors
+export const selectStatus = (state) => state.serverAPI.status
 
 export default reducer
