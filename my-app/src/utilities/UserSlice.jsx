@@ -10,14 +10,8 @@ function initUserName() {
   return userName ? userName : ""
 }
 
-function isUserName() {
-  const isUserName = localStorage.getItem("username") ? true : false
-  return isUserName
-}
-
 const initialState = {
   email: initUserName(),
-  rememberMe: isUserName(),
   token: initToken(),
   isLogged: false,
   logFailed: false,
@@ -30,7 +24,7 @@ const initialState = {
   profileLoaded: false
 }
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
