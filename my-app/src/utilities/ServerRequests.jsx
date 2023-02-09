@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { login, apierror } from "./UserSlice"
+import { login, profile, apierror } from "./UserSlice"
 import axios from "axios"
 
 axios.defaults.baseURL = "http://localhost:3001/api/v1/user"
@@ -53,6 +53,20 @@ export function APILogin(credentials) {
   }
 }
 
+export function APIProfile() {
+  return async (dispatch, getState) => {
+    await request(dispatch, getState, "/profile", axios.post, null)
+    postRequest(dispatch, getState, profile)
+  }
+}
+
+export function APIUpdateProfile(payload) {
+  return async (dispatch, getState) => {
+    await request(dispatch, getState, "/profile", axios.put, payload)
+    postRequest(dispatch, getState, null)
+  }
+}
+
 const { actions, reducer } = createSlice({
   name: "serverAPI",
   initialState,
@@ -81,7 +95,6 @@ const { actions, reducer } = createSlice({
       },
     },
     resolved: {
-      // la fonction de reducer
       reducer: (draft, action) => {
         if (draft.status === "pending") {
           draft.data = action.payload

@@ -4,9 +4,10 @@ import { store } from "./utilities/Store"
 
 import Home from './pages/Home.jsx'
 import SignIn from './pages/SignIn.jsx'
-import User from './pages/User.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 import Footer from "./components/Footer"
 import Header from "./components/Header"
+import ProtectRoute from "./utilities/ProtectRoute"
 import './App.css';
 
 function App() {
@@ -18,7 +19,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<SignIn />} />
-            <Route path="/user" element={<User />} />
+            <Route
+              path='/user'
+              element={
+                <ProtectRoute>
+                  <Dashboard />
+                </ProtectRoute>
+              }></Route>
           </Routes>
           <Footer />
         </Router>
