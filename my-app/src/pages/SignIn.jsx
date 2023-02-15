@@ -25,7 +25,7 @@ function SignIn() {
     )
     dispatch(APILogin(credentials))
   }
-  const handleToggle = (e) => setRememberMe((current) => !current)
+  const handleToggle = (e) => setRememberMe((prev) => !prev)
 
   return (
     <main className='main bg-dark'>

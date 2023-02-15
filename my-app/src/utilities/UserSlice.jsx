@@ -10,8 +10,14 @@ function initUserName() {
   return userName ? userName : ""
 }
 
+function isUserName() {
+  const isUserName = localStorage.getItem("username") ? true : false
+  return isUserName
+}
+
 const initialState = {
   email: initUserName(),
+  rememberMe: isUserName(),
   token: initToken(),
   isLogged: false,
   logFailed: false,
