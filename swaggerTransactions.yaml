@@ -119,12 +119,12 @@ definitions:
     properties:
       id:
         type: "integer"
-    date:
+      date:
         type: "string"
         format: "date-time"
-    amount:
+      amount:
         type: "number"
-    description:
+      description:
         type: "string"
   TransactionInput:
       type: "object"
